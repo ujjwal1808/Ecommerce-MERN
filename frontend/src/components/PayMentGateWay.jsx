@@ -18,7 +18,7 @@ const PayMentGateWay = () => {
     })
     const orderPlaced = async () => {
         console.log(allDetails, orderDetails)
-        await fetch('http://localhost:8000/addtoorder',{
+        await fetch('https://ecommerce-mern-backend-4y6r.onrender.com/addtoorder',{
             method: 'POST',
             headers:{
               Accept: 'application/form-data',

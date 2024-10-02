@@ -13,7 +13,7 @@ const Login = () => {
   }
   const logIn = async() =>{
     let responseData;
-    await fetch('http://localhost:8000/login',{
+    await fetch('https://ecommerce-mern-backend-4y6r.onrender.com/login',{
       method: 'POST',
       headers: {
         Accept: 'application/json',

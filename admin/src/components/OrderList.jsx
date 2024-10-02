@@ -8,7 +8,7 @@ const AdminPanel = () => {
   // Fetch order data from the database
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/getorderproduct'); // Update with your API endpoint
+      const response = await axios.get('https://ecommerce-mern-backend-4y6r.onrender.com/getorderproduct'); // Update with your API endpoint
       setOrders(response.data);
       setTotalOrders(response.data.length)
       console.log(totalOrders)
@@ -22,7 +22,7 @@ const AdminPanel = () => {
   }, []);
 
   const removeFromOrder = async (id) => {
-    await fetch('http://localhost:8000/removeorderproduct', {
+    await fetch('https://ecommerce-mern-backend-4y6r.onrender.com/removeorderproduct', {
       method: 'POST',
       headers: {
         accept: 'application/json',

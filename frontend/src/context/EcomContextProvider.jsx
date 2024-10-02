@@ -16,7 +16,7 @@ const EcomContextProvider = ({ children }) => {
 
 
   useEffect(() => {
-    fetch('http://localhost:8000/getallproduct')
+    fetch('https://ecommerce-mern-backend-4y6r.onrender.com/getallproduct')
       .then((res) => res.json())
       .then((data) => setProducts(data))
   }, [])
@@ -25,7 +25,7 @@ const EcomContextProvider = ({ children }) => {
   const addCart = (items) => {
     setCartCount(items.length + 1)
     if (localStorage.getItem('auth-token')) {
-      fetch('http://localhost:8000/addtocart', {
+      fetch('https://ecommerce-mern-backend-4y6r.onrender.com/addtocart', {
         method: 'POST',
         headers: {
           Accept: 'application/form-data',

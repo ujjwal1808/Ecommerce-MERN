@@ -19,7 +19,7 @@ const Signup = () => {
 
   const sign_up = async() =>{
     let responseData;
-    await fetch('http://localhost:8000/signup',{
+    await fetch('https://ecommerce-mern-backend-4y6r.onrender.com/signup',{
       method: 'POST',
       headers: {
         Accept: 'application/json',

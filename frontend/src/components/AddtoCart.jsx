@@ -10,7 +10,7 @@ const AddtoCart = () => {
   
   useEffect(() => {
     if (localStorage.getItem('auth-token')){
-        fetch('http://localhost:8000/getcart',{
+        fetch('https://ecommerce-mern-backend-4y6r.onrender.com/getcart',{
           method: 'POST',
           headers:{
             Accept: 'application/form-data',
@@ -26,7 +26,7 @@ const AddtoCart = () => {
   const removeFromCart = (item) =>{
     
     if (localStorage.getItem('auth-token')){
-        fetch('http://localhost:8000/removefromcart',{
+        fetch('https://ecommerce-mern-backend-4y6r.onrender.com/removefromcart',{
           method: 'POST',
           headers:{
             Accept: 'application/form-data',

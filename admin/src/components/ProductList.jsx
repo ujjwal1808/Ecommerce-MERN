@@ -5,7 +5,7 @@ const ProductList = () => {
   
     const fetchInfo = async () => {
         try {
-            const res = await axios.get('http://localhost:8000/getallproduct');
+            const res = await axios.get('https://ecommerce-mern-backend-4y6r.onrender.com/getallproduct');
             setAllproducts(res.data);  // Axios stores the response data in res.data
         } catch (error) {
             console.error("Error fetching data: ", error);
@@ -13,7 +13,7 @@ const ProductList = () => {
     }
 
     const removeItem = async (id) =>{
-        await fetch('http://localhost:8000/removeproduct',{
+        await fetch('https://ecommerce-mern-backend-4y6r.onrender.com/removeproduct',{
             method: 'POST',
             headers: {
                 accept: 'application/json',

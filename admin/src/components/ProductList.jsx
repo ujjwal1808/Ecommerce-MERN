@@ -31,10 +31,10 @@ const ProductList = () => {
     return (
        <div className='w-full'>
   <h1 className="text-3xl font-bold mb-4">Product List</h1>
-  <div className="overflow-x-auto"> {/* Enable horizontal scrolling for smaller screens */}
-    <table className="bg-white w-full" border={1}>
+  <div className="overflow-x-auto"> {/* Allow horizontal scrolling on small screens */}
+    <table className="min-w-full bg-white text-sm">
       <thead>
-        <tr>
+        <tr className="bg-gray-100">
           <th className="py-2 px-4 border-b text-left">Product</th>
           <th className="py-2 px-4 border-b text-left">Name</th>
           <th className="py-2 px-4 border-b text-left">Old Price</th>
@@ -46,19 +46,16 @@ const ProductList = () => {
       <tbody>
         {allproducts.length > 0 ? (
           allproducts.map((product, index) => (
-            <tr key={index} className='items-center text-center'>
-              <td className="py-2 px-4 border-b w-40">
-                <img src={product.image} alt={product.name} className="object-cover w-20 h-20 mx-auto" />
+            <tr key={index} className='hover:bg-gray-50'>
+              <td className="py-2 px-4 border-b w-24 md:w-32">
+                <img src={product.image} alt={product.name} className="object-cover w-full h-20 rounded" />
               </td>
-              <td className="py-2 px-4 border-b">{product.name}</td>
+              <td className="py-2 px-4 border-b truncate">{product.name}</td>
               <td className="py-2 px-4 border-b">₹ {product.old_price}</td>
               <td className="py-2 px-4 border-b">₹ {product.new_price}</td>
               <td className="py-2 px-4 border-b">{product.category}</td>
               <td className="py-2 px-4 border-b">
-                <button
-                  onClick={() => removeItem(product.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300"
-                >
+                <button onClick={() => removeItem(product.id)} className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 transition duration-300">
                   Remove
                 </button>
               </td>
@@ -73,6 +70,7 @@ const ProductList = () => {
     </table>
   </div>
 </div>
+
 
     )
 }

@@ -1,23 +1,36 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Sidebar = () => {
+const AppRouter = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="w-full bg-gray-800 text-white flex ">
-      <div className="p-4 text-2xl font-bold">Admin Panel</div>
-      <nav className="flex p-4">
-        <Link to="/products" className="py-2 px-4 hover:bg-gray-700 rounded">
-          Product List
-        </Link>
-        <Link to="/orders" className="py-2 px-4 hover:bg-gray-700 rounded">
-          Orders List
-        </Link>
-        <Link to="/add-product" className="py-2 px-4 hover:bg-gray-700 rounded">
-          Add Product
-        </Link>
-      </nav>
-    </div>
-  )
-}
+    <Router>
+      <div className="flex flex-col md:flex-row">
+        {/* Sidebar */}
+        <div className={`fixed md:static top-0 left-0 h-full w-64 bg-gray-800 transition-transform duration-300 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+          <Sidebar />
+        </div>
+
+        {/* Main Content */}
+        <div className={`flex-1 p-8 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'} md:ml-64`}>
+          <button onClick={toggleSidebar} className="md:hidden text-white">
+            {isSidebarOpen ? 'Close Menu' : 'Open Menu'}
+          </button>
+          <Routes>
+            <Route path="/products" element={<ProductList />} />
+            <Route path="/orders" element={<OrderList />} />
+            <Route path="/add-product" element={<AddProduct />} />
+            <Route path="/" element={<ProductList />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  );
+};
 
 export default Sidebar

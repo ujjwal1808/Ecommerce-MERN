@@ -8,8 +8,12 @@ import AddProduct from './components/AddProduct'
 function App() {
   return (
     <Router>
-        <Sidebar />
-        <div className="w-full p-8">
+      <div className="flex flex-col md:flex-row">
+        {/* Main Content */}
+        <div className={`flex-1 p-8 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'} md:ml-64`}>
+          <button onClick={toggleSidebar} className="md:hidden text-white">
+            {isSidebarOpen ? 'Close Menu' : 'Open Menu'}
+          </button>
           <Routes>
             <Route path="/products" element={<ProductList />} />
             <Route path="/orders" element={<OrderList />} />
@@ -17,6 +21,7 @@ function App() {
             <Route path="/" element={<ProductList />} />
           </Routes>
         </div>
+      </div>
     </Router>
   )
 }

@@ -60,61 +60,76 @@ const Womens = () => {
 
   return (
     <>
-      <div className='sm:flex gap-10'>
-        <div className="m-12">
-          <div className="text-sm mb-4">
-            <Link to="/" className='opacity-50 hover:opacity-100'>Home</Link><span>/</span><a href="">All Products</a>
-          </div>
+  <div className='flex flex-col sm:flex-row gap-4 sm:gap-10'>
+    {/* Breadcrumbs */}
+    <div className="m-4 sm:m-12">
+      <div className="text-sm mb-4">
+        <Link to="/" className='opacity-50 hover:opacity-100'>Home</Link><span>/</span>
+        <a href="/" className="opacity-50 hover:opacity-100">All Products</a>
+      </div>
+    </div>
+
+    {/* Products Section */}
+    <div className="product m-4 sm:m-2 sm:mr-5 sm:w-full">
+      <div>
+        {/* Section Title */}
+        <h1 className="text-2xl sm:text-4xl font-bold text-center sm:text-left">Women's Products</h1>
+
+        {/* Search Bar */}
+        <div className="flex flex-col sm:flex-row items-center mt-4">
+          <input
+            type="text"
+            className='border border-black rounded w-full sm:w-72 py-1.5 mb-4 sm:mb-0 sm:mr-2'
+            placeholder="Search for products"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button className='bg-black text-white w-full sm:w-auto p-2 rounded'>Search</button>
         </div>
-        <div className="product m-2 mr-5 items-center">
-          <div>
-            <h1 className="text-4xl ">Womens Products</h1>
-            <input
-              type="text"
-              className='border-black rounded border mt-5 w-72 py-1.5'
-              onChange={(e) => setSearch(e.target.value)}
-            /> {" "} <button className='bg-black text-white p-2 rounded'>Search</button>
-            <div className="text-md mt-5">{count} Products</div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-6 gap-5">
-              {products.filter((item) => item.category === "womens" || item.category === "women")
-                .filter((product) => {
-                  if (search === '') {
-                    return product
-                  } else if (product.name.toLowerCase().includes(search.toLowerCase())) {
-                    return product
-                  }
-                })
-                .slice(next, next2)
-                .map((product) => (
-                  <div key={product.id} className=' size-40 border h-fit border-gray rounded text-left '>
-                    <Link to={`/${product.name}`} key={product.id} >
-                      <div className='overflow-hidden mb-3'>
-                        <img
-                          src={product.image}
-                          onClick={() => SinglePage(product)}
-                          alt="image"
-                          key={product.id}
-                          className='hover:scale-150 transition-all duration-500 cursor-pointer'
-                        />
-                      </div>
-                      <div className="p-2">
-                        <div>{product.name}</div>
-                        <div>₹ {product.new_price}</div>
-                      </div>
-                    </Link>
+        {/* Product Count */}
+        <div className="text-md mt-4 text-center sm:text-left">{count} Products</div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 mt-5">
+          {products.filter((item) => item.category === "womens" || item.category === "women")
+            .filter((product) => {
+              if (search === '') {
+                return product;
+              } else if (product.name.toLowerCase().includes(search.toLowerCase())) {
+                return product;
+              }
+            })
+            .slice(next, next2)
+            .map((product) => (
+              <div key={product.id} className='border h-fit border-gray-200 rounded-lg text-left shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out'>
+                <Link to={`/${product.name}`} key={product.id}>
+                  <div className='overflow-hidden h-48'>
+                    <img
+                      src={product.image}
+                      onClick={() => SinglePage(product)}
+                      alt="image"
+                      className='w-full h-full object-cover transition-transform duration-500 hover:scale-110'
+                    />
                   </div>
-                ))}
-            </div>
+                  <div className="p-4">
+                    <div className="font-bold text-lg truncate">{product.name}</div>
+                    <div className="mt-1 text-lg text-green-600 font-semibold">₹ {product.new_price}</div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+        </div>
 
-            <div className="flex justify-center text-3xl mt-20">
-              <button onClick={prevItem} style={{ display: styleprev }}>{'<'}</button>
-              <button onClick={nextItem} style={{ display: style }}>{'>'}</button>
-            </div>
-          </div>
+        {/* Pagination Buttons */}
+        <div className="flex justify-center text-3xl mt-10 sm:mt-20 space-x-4">
+          <button onClick={prevItem} style={{ display: styleprev }} className="hover:text-gray-600">{'<'}</button>
+          <button onClick={nextItem} style={{ display: style }} className="hover:text-gray-600">{'>'}</button>
         </div>
       </div>
-    </>
+    </div>
+  </div>
+</>
+
   )
 }
 

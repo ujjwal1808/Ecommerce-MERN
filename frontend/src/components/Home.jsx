@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 // Loader component
 const Loader = () => (
   <div className="flex justify-center items-center py-20">
-    <div className="loader border-t-transparent border-solid rounded-full border-blue-500 border-8 h-16 w-16 animate-spin"></div>
+    <div className="loader border-t-transparent border-solid rounded-full border-orange-500 border-8 h-16 w-16 animate-spin"></div>
   </div>
 );
 
